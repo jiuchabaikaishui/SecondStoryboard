@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		18BEF5221D2BFBCB00F262A3 /* InfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18BEF5211D2BFBCB00F262A3 /* InfoViewController.m */; };
 		6EECAFF41D0F970000AA907E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EECAFF31D0F970000AA907E /* main.m */; };
 		6EECAFF71D0F970000AA907E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EECAFF61D0F970000AA907E /* AppDelegate.m */; };
 		6EECAFFA1D0F970000AA907E /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EECAFF91D0F970000AA907E /* MasterViewController.m */; };
@@ -36,6 +37,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		18BEF5201D2BFBCB00F262A3 /* InfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoViewController.h; sourceTree = "<group>"; };
+		18BEF5211D2BFBCB00F262A3 /* InfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoViewController.m; sourceTree = "<group>"; };
 		6EECAFEF1D0F970000AA907E /* SecondStoryboard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SecondStoryboard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6EECAFF31D0F970000AA907E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		6EECAFF51D0F970000AA907E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -110,6 +113,8 @@
 				6EECAFF91D0F970000AA907E /* MasterViewController.m */,
 				6EECAFFB1D0F970000AA907E /* DetailViewController.h */,
 				6EECAFFC1D0F970000AA907E /* DetailViewController.m */,
+				18BEF5201D2BFBCB00F262A3 /* InfoViewController.h */,
+				18BEF5211D2BFBCB00F262A3 /* InfoViewController.m */,
 				6EECAFFE1D0F970000AA907E /* Main.storyboard */,
 				6EECB0011D0F970000AA907E /* Assets.xcassets */,
 				6EECB0031D0F970000AA907E /* LaunchScreen.storyboard */,
@@ -212,6 +217,7 @@
 				TargetAttributes = {
 					6EECAFEE1D0F970000AA907E = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = XCL3BJXWK5;
 					};
 					6EECB00A1D0F970000AA907E = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -278,6 +284,7 @@
 				6EECAFF71D0F970000AA907E /* AppDelegate.m in Sources */,
 				6EECAFFA1D0F970000AA907E /* MasterViewController.m in Sources */,
 				6EECAFF41D0F970000AA907E /* main.m in Sources */,
+				18BEF5221D2BFBCB00F262A3 /* InfoViewController.m in Sources */,
 				6EECAFFD1D0F970000AA907E /* DetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -419,11 +426,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = SecondStoryboard/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.etongxing.www.SecondStoryboard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -432,11 +442,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = SecondStoryboard/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.etongxing.www.SecondStoryboard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
