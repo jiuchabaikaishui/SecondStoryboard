@@ -110,9 +110,7 @@
                                     <constraint firstAttribute="width" constant="22" id="RjG-od-Lmh"/>
                                 </constraints>
                                 <connections>
-                                    <segue destination="ckJ-rR-zGw" kind="popoverPresentation" identifier="InfoViewController" popoverAnchorView="ZoL-Fm-zaf" id="mOn-md-RZY">
-                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                    </segue>
+                                    <action selector="infoAction:" destination="JEX-9P-axG" eventType="touchUpInside" id="Ial-QM-i8H"/>
                                 </connections>
                             </button>
                         </subviews>

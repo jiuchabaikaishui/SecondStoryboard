@@ -37,16 +37,16 @@
     [self configureView];
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    InfoViewController *nextCtr = (InfoViewController *)segue.destinationViewController;
-    if ([segue.identifier isEqualToString:@"InfoViewController"]) {
-        NSDate *date = [NSDate date];
-        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-        [formatter setDateFormat:@"yyyy年MM月dd日"];
-        nextCtr.displayText = [formatter stringFromDate:date];
-    }
-}
+//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+//{
+//    InfoViewController *nextCtr = (InfoViewController *)segue.destinationViewController;
+//    if ([segue.identifier isEqualToString:@"InfoViewController"]) {
+//        NSDate *date = [NSDate date];
+//        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+//        [formatter setDateFormat:@"yyyy年MM月dd日"];
+//        nextCtr.displayText = [formatter stringFromDate:date];
+//    }
+//}
 
 #pragma mark - 点击触摸方法
 - (IBAction)clearSurvey:(UIButton *)sender {
@@ -87,6 +87,26 @@
     
     //清除数据
     [self clearSurvey:nil];
+}
+#define ios8            ([[UIDevice currentDevice].systemVersion doubleValue] >= 8.0)
+- (IBAction)infoAction:(UIButton *)sender {
+    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+    InfoViewController *infoViewController = [mainStoryboard instantiateViewControllerWithIdentifier:@"InfoViewController"];
+    NSDate *date = [NSDate date];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy年MM月dd日"];
+    infoViewController.displayText = [formatter stringFromDate:date];
+    
+//    if (ios8) {
+//        UIPopoverPresentationController *popCtr = [[UIPopoverPresentationController alloc] initWithPresentedViewController:infoViewController presentingViewController:self];
+//    }
+//    else
+//    {
+        UIPopoverController *popViewController = [[UIPopoverController alloc] initWithContentViewController:infoViewController];
+        popViewController.popoverContentSize = CGSizeMake(200, 100); //弹出窗口大小，如果屏幕画不下，会挤小的。这个值默认是320x1100
+        CGRect rect = CGRectMake(0, 0, 0, 0);
+        [popViewController presentPopoverFromRect:rect inView:sender permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+//    }
 }
 
 #pragma mark - 自定义方法
