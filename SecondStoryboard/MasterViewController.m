@@ -12,6 +12,7 @@
 @interface MasterViewController ()
 
 @property (strong,nonatomic) NSMutableArray *surveyDataArray;
+@property (assign,nonatomic) NSInteger currentIndex;
 
 @end
 
@@ -47,16 +48,18 @@
     [self.surveyDataArray addObject:dic];
     [self.tableView reloadData];
 }
-
-#pragma mark - Segues
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([[segue identifier] isEqualToString:@"showDetail"]) {
-        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        NSDictionary *dic = self.surveyDataArray[indexPath.row];
-        DetailViewController *controller = (DetailViewController *)[[segue destinationViewController] topViewController];
-        [controller setDetailItem:dic];
-        controller.navigationItem.leftBarButtonItem = self.splitViewController.displayModeButtonItem;
-        controller.navigationItem.leftItemsSupplementBackButton = YES;
+- (void)moveNext
+{
+    if (self.currentIndex < self.surveyDataArray.count - 1) {
+        NSDictionary *dic = self.surveyDataArray[++self.currentIndex];
+        self.detailViewController.detailItem = dic;
+    }
+}
+- (void)movePrevious
+{
+    if (self.currentIndex > 0) {
+        NSDictionary *dic = self.surveyDataArray[--self.currentIndex];
+        self.detailViewController.detailItem = dic;
     }
 }
 
@@ -74,6 +77,18 @@
     cell.textLabel.text = [NSString stringWithFormat:@"姓名：%@%@",dic[@"firstName"],dic[@"lastName"]];
     
     return cell;
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    NSDictionary *dic = self.surveyDataArray[indexPath.row];
+    
+    [self.detailViewController setDetailItem:dic];
+    self.detailViewController.navigationItem.leftBarButtonItem = self.splitViewController.displayModeButtonItem;
+    self.detailViewController.navigationItem.leftItemsSupplementBackButton = YES;
+    
+    self.currentIndex = indexPath.row;
 }
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     return YES;

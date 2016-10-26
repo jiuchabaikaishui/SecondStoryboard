@@ -115,6 +115,7 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="wJj-jd-lly" firstAttribute="height" secondItem="gJB-7w-AbI" secondAttribute="height" id="3HL-u8-41w"/>
                             <constraint firstItem="wJj-jd-lly" firstAttribute="leading" secondItem="C7a-hN-QEi" secondAttribute="trailing" constant="8" id="4Dd-UM-NVQ"/>
@@ -157,6 +158,10 @@
                             <constraint firstItem="C7a-hN-QEi" firstAttribute="top" secondItem="9YX-VO-Itw" secondAttribute="bottom" constant="17" id="yoJ-f4-LGf"/>
                             <constraint firstAttribute="trailing" secondItem="fZl-fI-HV6" secondAttribute="trailing" constant="20" id="zqx-gc-oMZ"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="Nc9-DB-Mme" appends="YES" id="k3Q-M3-Mn9"/>
+                            <outletCollection property="gestureRecognizers" destination="rCB-4W-aJm" appends="YES" id="QI9-z5-buh"/>
+                        </connections>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Detail" id="mOI-FS-AaM"/>
@@ -169,6 +174,16 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FJe-Yq-33r" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="right" id="Nc9-DB-Mme">
+                    <connections>
+                        <action selector="rightSwipeAction:" destination="JEX-9P-axG" id="915-mN-BQ2"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <swipeGestureRecognizer direction="left" id="rCB-4W-aJm">
+                    <connections>
+                        <action selector="leftSwipeAction:" destination="JEX-9P-axG" id="m8s-nj-xiB"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="709" y="129"/>
         </scene>
@@ -247,9 +262,6 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <connections>
-                                    <segue destination="vC3-pB-5Vb" kind="showDetail" identifier="showDetail" id="6S0-TO-JiA"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <sections/>
@@ -280,7 +292,4 @@
             <point key="canvasLocation" x="-45" y="129"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="6S0-TO-JiA"/>
-    </inferredMetricsTieBreakers>
 </document>
