@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "DetailViewController.h"
+#import "MasterViewController.h"
 
 @interface AppDelegate () <UISplitViewControllerDelegate>
 
@@ -22,6 +23,7 @@
     UINavigationController *navigationController = [splitViewController.viewControllers lastObject];
     navigationController.topViewController.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem;
     splitViewController.delegate = self;
+    
     return YES;
 }
 
@@ -33,6 +35,20 @@
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    
+    UISplitViewController *splitCtr = (UISplitViewController *)self.window.rootViewController;
+    UINavigationController *navCtr = [splitCtr.viewControllers firstObject];
+    MasterViewController *masterCtr = (MasterViewController *)navCtr.topViewController;
+    NSError *error = NULL;
+    NSData *data = [NSPropertyListSerialization dataWithPropertyList:masterCtr.surveyDataArray format:NSPropertyListXMLFormat_v1_0 options:0 error:&error];
+    if (!error) {
+        NSArray *pathArr = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *pathStr = [[pathArr firstObject] stringByAppendingPathComponent:@"surveyData.XML"];
+        [data writeToFile:pathStr atomically:YES];
+        NSString *str = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/surveyData.XML"];
+        NSLog(@"%@", pathStr);
+        NSLog(@"%@", str);
+    }
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {

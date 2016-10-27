@@ -11,7 +11,6 @@
 
 @interface MasterViewController ()
 
-@property (strong,nonatomic) NSMutableArray *surveyDataArray;
 @property (assign,nonatomic) NSInteger currentIndex;
 
 @end
@@ -22,7 +21,16 @@
 - (NSMutableArray *)surveyDataArray
 {
     if (_surveyDataArray == nil) {
-        _surveyDataArray = [NSMutableArray arrayWithCapacity:1];
+        NSString *pathStr = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/surveyData.XML"];
+        NSData *data = [NSData dataWithContentsOfFile:pathStr];
+        if (data) {
+            NSError *error = NULL;
+            _surveyDataArray = [NSPropertyListSerialization propertyListWithData:data options:NSPropertyListMutableContainers format:NULL error:&error];
+        }
+        else
+        {
+            _surveyDataArray = [NSMutableArray arrayWithCapacity:1];
+        }
     }
     
     return _surveyDataArray;
@@ -50,7 +58,8 @@
 }
 - (void)moveNext
 {
-    if (self.currentIndex < self.surveyDataArray.count - 1) {
+    NSInteger index = self.surveyDataArray.count - 1;
+    if (self.currentIndex < index) {
         NSDictionary *dic = self.surveyDataArray[++self.currentIndex];
         self.detailViewController.detailItem = dic;
     }

@@ -12,6 +12,7 @@
 
 @interface MasterViewController : UITableViewController
 
+@property (strong,nonatomic) NSMutableArray *surveyDataArray;
 @property (strong, nonatomic) DetailViewController *detailViewController;
 - (void)addSurveyDataArray:(NSDictionary *)dic;
 - (void)moveNext;
