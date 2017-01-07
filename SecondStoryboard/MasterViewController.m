@@ -21,11 +21,16 @@
 - (NSMutableArray *)surveyDataArray
 {
     if (_surveyDataArray == nil) {
+        //NSString *pathStr = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/surveyData.json"];
         NSString *pathStr = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/surveyData.XML"];
         NSData *data = [NSData dataWithContentsOfFile:pathStr];
         if (data) {
             NSError *error = NULL;
-            _surveyDataArray = [NSPropertyListSerialization propertyListWithData:data options:NSPropertyListMutableContainers format:NULL error:&error];
+            //NSMutableArray *arr = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
+            NSMutableArray *arr = [NSPropertyListSerialization propertyListWithData:data options:NSPropertyListMutableContainers format:NULL error:&error];
+            if (!error) {
+                _surveyDataArray = arr;
+            }
         }
         else
         {

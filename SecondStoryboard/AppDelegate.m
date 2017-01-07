@@ -39,16 +39,27 @@
     UISplitViewController *splitCtr = (UISplitViewController *)self.window.rootViewController;
     UINavigationController *navCtr = [splitCtr.viewControllers firstObject];
     MasterViewController *masterCtr = (MasterViewController *)navCtr.topViewController;
-    NSError *error = NULL;
-    NSData *data = [NSPropertyListSerialization dataWithPropertyList:masterCtr.surveyDataArray format:NSPropertyListXMLFormat_v1_0 options:0 error:&error];
-    if (!error) {
-        NSArray *pathArr = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-        NSString *pathStr = [[pathArr firstObject] stringByAppendingPathComponent:@"surveyData.XML"];
-        [data writeToFile:pathStr atomically:YES];
-        NSString *str = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/surveyData.XML"];
-        NSLog(@"%@", pathStr);
-        NSLog(@"%@", str);
-    }
+    [masterCtr.view endEditing:YES];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        NSError *error = NULL;
+//        NSData *data = [NSJSONSerialization dataWithJSONObject:masterCtr.surveyDataArray options:NSJSONWritingPrettyPrinted error:&error];
+//        if (!error) {
+//            NSString *documentPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
+//            NSString *path = [documentPath stringByAppendingPathComponent:@"surveyData.json"];
+//            [data writeToFile:path atomically:YES];
+//            NSLog(@"%@", documentPath);
+//            NSLog(@"%@", path);
+//        }
+        NSData *data = [NSPropertyListSerialization dataWithPropertyList:masterCtr.surveyDataArray format:NSPropertyListXMLFormat_v1_0 options:0 error:&error];
+        if (!error) {
+            NSArray *pathArr = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+            NSString *pathStr = [[pathArr firstObject] stringByAppendingPathComponent:@"surveyData.XML"];
+            [data writeToFile:pathStr atomically:YES];
+            NSString *str = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/surveyData.XML"];
+            NSLog(@"%@", pathStr);
+            NSLog(@"%@", str);
+        }
+    });
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
